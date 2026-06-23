@@ -1,41 +1,34 @@
-import styled from'styled-components'
+import { BrowserRouter,Route,Routes,Navigate} from 'react-router-dom'
 import GlobalStyle from './styles/GlobalStyles'
-import Button from './ui/Button'
+import Dashboard from './pages/Dashboard'
+import Account from './pages/Account'
+import Bookings from './pages/Bookings'
+import Cabins from './pages/Cabins'
+import Login from './pages/Login'
+import PageNotFound from './pages/PageNotFound'
+import Settings from './pages/Settings'
+import Users from './pages/Users'
 
 
-const H1 = styled.h1`
-  background-color:red;
-`
-// const Button = styled.button`
-//   background-color: var(--color-brand-600);
-//   font-weight : 500;
-//   border : none;
-//   text-transform: capitalize;
-//   font-size:1.4rem;
-//   color: var(--color-brand-50);
-//   border-radius:var(--border-radius-sm);
-//   padding:1.2rem 1.6rem;
-//   cursor: pointer;
-// `
-const Input = styled.input`
-  height:2rem;
-  padding:10px;
-  border-radius:8px;
-`
-const Dav =styled.div`
-  background-color:yellow;
-  display:block;
-`
 function App() {
   return (
-    <Dav>
+    <>
       <GlobalStyle/>
-      <H1>the wild oasis</H1>
-      <Button>check in</Button> 
-      <Button>check out</Button> 
-      <Input type="text" name="" id="" placeholder='Number of Guest'/> 
-      <Input type="text" name="" id="" placeholder='Number of Guest'/> 
-    </Dav>
+      <BrowserRouter>
+        <Routes>
+          <Route index element={<Navigate replaceto= "dashboard"/>}></Route>
+          <Route path='dashboard' element={<Dashboard/>}></Route>
+          <Route path='booking' element={<Bookings/>}></Route>
+          <Route path='cabins' element={<Cabins/>}></Route>
+          <Route path='users' element={<Users/>}></Route>
+          <Route path='setting' element={<Settings/>}></Route>
+          <Route path='login' element={<Login/>}></Route>
+          <Route path='account' element={<Account/>}></Route>
+          <Route path='*' element={<PageNotFound/>}></Route>
+        </Routes>
+    </BrowserRouter>
+    </>
+    
   )
 }
 export default App;
